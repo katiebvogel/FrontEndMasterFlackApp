@@ -27,12 +27,26 @@ Comments = new Mongo.Collection('comments');
 Template.CommentList.helpers({
   comments() {
     return Comments.find();
+  },
+
+  formatTimestamp(timestamp) {
+    return moment(timestamp).calendar();
   }
 });
+
+
+//see below how meteor is having you handle your submit form function.  If we were using jQuery, it would look like this:
+// $('form').on('submit', function(ev){
+//
+//});
+//but it's a little nicer in the case below to make the event handler funciton associated with the specific template.
+
 
 Template.CommentAdd.events({
   'submit form': function(ev, tmpl) {
     ev.preventDefault();
+    // debugger;
+    //see README for info on why I included the debugger for learning purposes.
 
     var form = tmpl.find('form');
     var commentElement = tmpl.find('[name=comment]');
