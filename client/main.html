@@ -5,6 +5,8 @@
 <body>
   <h1>Welcome to Meteor!</h1>
   {{> CommentList}}
+  {{> CommentAdd}}
+
   {{> hello}}
 
 </body>
@@ -36,4 +38,11 @@
         <li>Sorry, no comments yet!</li>
       {{/each}}
   </ul>
+</template>
+
+<template name="CommentAdd">
+  <form>
+    <input type="text" name="comment" autofocus placeholder="Add a comment..."  />
+    <input type="submit" value="Add"  />
+  </form>
 </template>

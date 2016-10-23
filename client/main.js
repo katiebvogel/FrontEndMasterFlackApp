@@ -21,21 +21,30 @@ Template.hello.events({
   },
 });
 
+Comments = new Mongo.Collection('comments');
+
+
 Template.CommentList.helpers({
   comments() {
-    return [
-      {
-        timestamp: new Date,
-        login: 'kvogel',
-        room: 'main',
-        comment: 'First Comment!'
-      },
-      {
-        timestamp: new Date,
-        login: 'kvogel',
-        room: 'main',
-        comment: 'Second Comment!'
-      },
-    ];
+    return Comments.find();
   }
+});
+
+Template.CommentAdd.events({
+  'submit form': function(ev, tmpl) {
+    ev.preventDefault();
+
+    var form = tmpl.find('form');
+    var commentElement = tmpl.find('[name=comment]');
+    var comment = commentElement.value;
+
+    Comments.insert({
+      login: 'katiebvogel',
+      timestamp: new Date,
+      room: 'main',
+      comment: comment
+    });
+
+      form.reset();
+    }
 });
