@@ -1,0 +1,39 @@
+<head>
+  <title>FEMapp</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+  {{> CommentList}}
+  {{> hello}}
+
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+
+
+
+<template name= "CommentList">
+  <h1>Katie's Flack</h1>
+  <ul>
+    {{#each comments}}
+        <li>
+          <div>
+                {{login}}
+          </div>
+          <div>
+                {{timestamp}}
+          </div>
+          <div>
+                {{comment}}
+          </div>
+        </li>
+      {{else}}
+        <li>Sorry, no comments yet!</li>
+      {{/each}}
+  </ul>
+</template>
